@@ -54,3 +54,59 @@ def generar_estadisticas_anexo(tablas, carpeta_anexos):
         archivo.write(f"H5 (Total establecimientos vs Centros grandes): {h5['total_establecimientos'].corr(h5['centros_medianos_grandes']):.3f}\n")
 
     print(f"Estadísticas guardadas en: {ruta_txt}")
+
+
+def graficas_principales(h1, h2, h3, h4, h5, carpeta_prin):
+    # Gráfica 6.1: Top municipios por empresas medianas y grandes
+    top_h1 = h1.sort_values("empresas_medianas_grandes", ascending=True).tail(10)
+    plt.figure(figsize=(9, 5))
+    plt.barh(top_h1["municipio"], top_h1["empresas_medianas_grandes"], color="#1f77b4")
+    plt.title("Top 10 Municipios con Mayor Cantidad de Empresas Medianas y Grandes")
+    plt.xlabel("Cantidad de empresas medianas y grandes")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_prin, "fig_6_1_empresas_grandes_municipio.png"))
+    plt.close()
+
+    # Gráfica 6.2: Proveedores de salud vs higiene personal (barras apiladas)
+    top_h2 = h2.head(10).iloc[::-1]
+    plt.figure(figsize=(9, 5))
+    plt.barh(top_h2["municipio"], top_h2["fab_equipo_medico"], label="Equipo Médico", color="#2ca02c")
+    plt.barh(top_h2["municipio"], top_h2["fab_higiene_personal"], left=top_h2["fab_equipo_medico"], label="Higiene Personal", color="#98df8a")
+    plt.title("Top 10 Municipios Proveedores de Salud e Higiene Personal")
+    plt.xlabel("Total de proveedores")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_prin, "fig_6_2_proveedores_salud_higiene.png"))
+    plt.close()
+
+    # Gráfica 6.3: Distribución nacional por estrato de empleados
+    plt.figure(figsize=(9, 5))
+    plt.bar(h3["estrato_empleados"], h3["porcentaje_nacional"], color="#ff7f0e")
+    plt.title("Distribución Porcentual Nacional de Establecimientos por Tamaño")
+    plt.ylabel("Porcentaje nacional (%)")
+    plt.xticks(rotation=30, ha="right")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_prin, "fig_6_3_distribucion_estratos.png"))
+    plt.close()
+
+    # Gráfica 6.4: Sentimiento promedio por municipio monitoreado
+    h4_ord = h4.sort_values("sentimiento_promedio")
+    colores_sent = ["#d62728" if x < 0 else "#2ca02c" for x in h4_ord["sentimiento_promedio"]]
+    plt.figure(figsize=(9, 5))
+    plt.barh(h4_ord["municipio"], h4_ord["sentimiento_promedio"], color=colores_sent)
+    plt.axvline(0, color="black", linewidth=0.8)
+    plt.title("Sentimiento Promedio de Noticias Económicas por Municipio")
+    plt.xlabel("Índice de sentimiento promedio")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_prin, "fig_6_4_sentimiento_municipios.png"))
+    plt.close()
+
+    # Gráfica 6.5: Concentración de centros medianos y grandes por colonia (Guadalajara)
+    h5_ord = h5.sort_values("centros_medianos_grandes", ascending=True)
+    plt.figure(figsize=(9, 5))
+    plt.barh(h5_ord["colonia"], h5_ord["centros_medianos_grandes"], color="#9467bd")
+    plt.title("Top 10 Colonias en Guadalajara por Centros Medianos y Grandes")
+    plt.xlabel("Centros medianos y grandes")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_prin, "fig_6_5_colonias_gdl.png"))
+    plt.close()
