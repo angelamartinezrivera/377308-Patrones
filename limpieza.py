@@ -78,6 +78,11 @@ def limpiar_datos(df):
         if not col.startswitch(claves) and col not in columnas_texto:
             df[col] = pd.to_numeric(df[col])
 
+    # 5. Borra filas que estén en blanco y elimina filas repetidas
+    df = df.dropna(how="all").drop_duplicates()
+
+    return df        
+
 
 if __name__ == "__main__":
     # Carga todos los archivos de la lista al inicio
