@@ -53,7 +53,7 @@ def generar_estadisticas_anexo(tablas, carpeta_anexos):
         archivo.write(f"H4 (Total noticias vs Sentimiento promedio): {h4['total_noticias'].corr(h4['sentimiento_promedio']):.3f}\n")
         archivo.write(f"H5 (Total establecimientos vs Centros grandes): {h5['total_establecimientos'].corr(h5['centros_medianos_grandes']):.3f}\n")
 
-    print(f"Estadísticas guardadas en: {ruta_txt}")
+    print(f"Estadísticas guardadas en resultados_eda.")
 
 
 def graficas_principales(h1, h2, h3, h4, h5, carpeta_prin):
@@ -147,3 +147,30 @@ def graficas_anexos(h1, h4_comp, h5, carpeta_anexos):
     plt.savefig(os.path.join(carpeta_anexos, "anexo_11_4_densidad_colonias.png"))
     plt.close()
 
+
+if __name__ == "__main__":
+    # Crear carpetas de salida para organizar resultados
+    carpeta_prin = os.path.join("resultados_eda", "graficas_principales")
+    carpeta_anexos = os.path.join("resultados_eda", "anexos")
+    os.makedirs(carpeta_prin, exist_ok=True)
+    os.makedirs(carpeta_anexos, exist_ok=True)
+
+    # Carga, complementa y analiza
+    h1, h2, h3, h4, h4_comp, h5 = cargar_tablas_limpias()
+    h1, h2, h3, h4, h4_comp, h5 = complementar_datos(h1, h2, h3, h4, h4_comp, h5)
+
+    # Agrupar las 6 tablas ya complementadas en un diccionario
+    tablas = {
+        "Hallazgo 1 (Municipios)": h1,
+        "Hallazgo 2 (Salud/Higiene)": h2,
+        "Hallazgo 3 (Estratos)": h3,
+        "Hallazgo 4 (Noticias Mun.)": h4,
+        "Complemento H4 (Temas)": h4_comp,
+        "Hallazgo 5 (Colonias GDL)": h5,
+    }
+
+    # Genera el resumen estadístico y todas las gráficas (principales y de anexos) para el informe
+    generar_estadisticas_anexo(tablas, carpeta_anexos)
+    graficas_principales(h1, h2, h3, h4, h5, carpeta_prin)
+    graficas_anexos(h1, h4_comp, h5, carpeta_anexos)
+    print("Análisis exploratorio y gráficas generados en resultados_eda.")
