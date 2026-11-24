@@ -30,6 +30,20 @@ def cargar_todos(lista_archivos):
     return tablas
 
 
+def limpiar_datos(df):
+    # Poner los nombres de las columnas en minúsculas y cambiar espacios por guión bajo
+    df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
+
+    # Recorrer cada columna para quitar símbolos extraños (\ufffd) y espacios extra
+    for col in df.columns:
+        df[col] = df[col].str.replace("\ufffd", "", regex=False).str.strip()
+
+        return df
+
+
 if __name__ == "__main__":
     # Paso 1: Carga todos los archivos de la lista al inicio
     tablas_crudas = cargar_todos(ARCHIVOS_CSV)
+
+    # Paso 2: Prueba de limpieza
+    print(limpiar_datos(tablas_crudas["hallazgo_1.csv"]).head(3))
