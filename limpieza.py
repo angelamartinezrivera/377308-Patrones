@@ -72,6 +72,12 @@ def limpiar_datos(df):
             largo = df[col].str.len().max()  # Busca la cantidad de dígitos que debe tener la clave
             df[col] = df[col].str.zfill(largo)  # Rellena con ceros a la izquierda si faltan
 
+    # 4. Convertir a número (entero o decimal) las columnas que no son claves ni texto
+    columnas_texto = ("entidad", "municipio", "estrato_empleados", "tema_noticia", "colonia")
+    for col in df.columnas:
+        if not col.startswitch(claves) and col not in columnas_texto:
+            df[col] = pd.to_numeric(df[col])
+
 
 if __name__ == "__main__":
     # Carga todos los archivos de la lista al inicio
