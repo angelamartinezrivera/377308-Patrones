@@ -11,6 +11,28 @@ ARCHIVOS_CSV = [
     "hallazgo_5.csv"
 ]
 
+# Diccionario para corregir palabras que venían con acentos o letras repetidas
+CORRECCIONES = {
+    "Leán": "León",
+    "Tijuaána": "Tijuana",
+    "Nuevo Len": "Nuevo León",
+    "Moánterrey": "Monterrey",
+    "Zapopaán": "Zapopan",
+    "Ciudad de Mxico": "Ciudad de México",
+    "Jurez": "Juárez",
+    "Quertaro": "Querétaro",
+    "San Luis Potos": "San Luis Potosí",
+    "Saán Luis Potos": "San Luis Potosí",
+    "Aguascalieántes": "Aguascalientes",
+    "Mxico": "México",
+    "Tlalánepaántla de Baz": "Tlalnepantla de Baz",
+    "Yucatn": "Yucatán",
+    "Mrida": "Mérida",
+    "Nezahualcyotl": "Nezahualcóyotl",
+    "Michoacn de Ocampo": "Michoacán de Ocampo",
+    "251 y ms personas": "251 y más personas",
+}
+
 
 def cargar_todos(lista_archivos):
     # Diccionario vacío donde se guarda cada tabla leída
@@ -36,14 +58,14 @@ def limpiar_datos(df):
 
     # Recorrer cada columna para quitar símbolos extraños (\ufffd) y espacios extra
     for col in df.columns:
-        df[col] = df[col].str.replace("\ufffd", "", regex=False).str.strip()
-
-        return df
+        df[col] = (
+            df[col]
+            .str.replace("\ufffd", "", regex=False)
+            .str.strip()
+            .replace(CORRECCIONES)
+        )
 
 
 if __name__ == "__main__":
-    # Paso 1: Carga todos los archivos de la lista al inicio
+    # Carga todos los archivos de la lista al inicio
     tablas_crudas = cargar_todos(ARCHIVOS_CSV)
-
-    # Paso 2: Prueba de limpieza
-    print(limpiar_datos(tablas_crudas["hallazgo_1.csv"]).head(3))
