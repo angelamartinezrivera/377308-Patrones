@@ -53,10 +53,10 @@ def cargar_todos(lista_archivos):
 
 
 def limpiar_datos(df):
-    # Poner los nombres de las columnas en minúsculas y cambiar espacios por guión bajo
+    # 1. Poner los nombres de las columnas en minúsculas y cambiar espacios por guión bajo
     df.columns = [col.strip().lower().replace(" ", "_") for col in df.columns]
 
-    # Recorrer cada columna para quitar símbolos extraños (\ufffd) y espacios extra
+    # 2. Recorrer cada columna para quitar símbolos extraños (\ufffd) y espacios extra
     for col in df.columns:
         df[col] = (
             df[col]
@@ -64,6 +64,13 @@ def limpiar_datos(df):
             .str.strip()
             .replace(CORRECCIONES)
         )
+
+    # 3. Mantener los ceros a la izquierda en claves de estado, municipio y código postal
+    claves = ("cve_", "cod_", "codigo", "cp")
+    for col in df.columns:
+        if col.startswith(claves):
+            largo = df[col].str.len().max()  # Busca la cantidad de dígitos que debe tener la clave
+            df[col] = df[col].str.zfill(largo)  # Rellena con ceros a la izquierda si faltan
 
 
 if __name__ == "__main__":
