@@ -110,3 +110,40 @@ def graficas_principales(h1, h2, h3, h4, h5, carpeta_prin):
     plt.tight_layout()
     plt.savefig(os.path.join(carpeta_prin, "fig_6_5_colonias_gdl.png"))
     plt.close()
+
+
+def graficas_anexos(h1, h4_comp, h5, carpeta_anexos):
+    # Anexo 11.4 A: Relación entre tamaño total del municipio y % de empresas grandes
+    plt.figure(figsize=(8, 5))
+    plt.scatter(h1["total_unidades"], h1["pct_empresas_grandes"], color="#1f77b4", s=70)
+    for _, fila in h1.iterrows():
+        plt.annotate(fila["municipio"], (fila["total_unidades"], fila["pct_empresas_grandes"]), fontsize=8)
+    plt.title("Relación entre Total de Unidades Económicas y % de Empresas Grandes")
+    plt.xlabel("Total de unidades económicas")
+    plt.ylabel("Porcentaje de empresas grandes (%)")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_anexos, "anexo_11_4_dispersion_h1.png"))
+    plt.close()
+
+    # Anexo 11.4 B: Sentimiento promedio por tema de noticia
+    h4c_ord = h4_comp.sort_values("sentimiento_promedio")
+    colores_tema = ["#d62728" if x < 0 else "#1f77b4" for x in h4c_ord["sentimiento_promedio"]]
+    plt.figure(figsize=(8, 5))
+    plt.barh(h4c_ord["tema_noticia"], h4c_ord["sentimiento_promedio"], color=colores_tema)
+    plt.axvline(0, color="black", linewidth=0.8)
+    plt.title("Sentimiento Promedio por Tema de Noticia (Complemento Hallazgo 4)")
+    plt.xlabel("Sentimiento promedio")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_anexos, "anexo_11_4_sentimiento_temas.png"))
+    plt.close()
+
+    # Anexo 11.4 C: Porcentaje de especialización industrial por colonia en Guadalajara
+    h5_pct = h5.sort_values("pct_medianos_grandes", ascending=True)
+    plt.figure(figsize=(8, 5))
+    plt.barh(h5_pct["colonia"], h5_pct["pct_medianos_grandes"], color="#8c564b")
+    plt.title("Densidad Relativa (%) de Centros Medianos/Grandes por Colonia")
+    plt.xlabel("Porcentaje respecto al total de establecimientos (%)")
+    plt.tight_layout()
+    plt.savefig(os.path.join(carpeta_anexos, "anexo_11_4_densidad_colonias.png"))
+    plt.close()
+
