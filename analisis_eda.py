@@ -18,6 +18,7 @@ def cargar_tablas_limpias():
     h5 = pd.read_csv(os.path.join("limpios", "limpio_hallazgo_5.csv"), dtype={"cod_postal": str})
     return h1, h2, h3, h4, h4_comp, h5
 
+
 def complementar_datos(h1, h2, h3, h4, h4_comp, h5):
     # Cruzar claves de estado y municipio de h1 y h2 para ponerle nombre a h4
     catalogo_mun = pd.concat([
@@ -33,3 +34,23 @@ def complementar_datos(h1, h2, h3, h4, h4_comp, h5):
     h3["pct_acumulado"] = h3["porcentaje_nacional"].cumsum().round(2)
 
     return h1, h2, h3, h4, h4_comp, h5
+
+
+def generar_estadisticas_anexo(tablas, carpeta_anexos):
+    # Resumen estadístico (conteo, media, desv. estándar, min, cuartiles, max) para Anexo 11.3
+    ruta_txt = os.path.join(carpeta_anexos, "estadistica_descriptiva_11_3.txt")
+    with open(ruta_txt, "w", encoding="utf-8") as archivo:
+        for nombre, df in tablas.items():
+            archivo.write(f"=== ESTADISTICA DESCRIPTIVA: {nombre} ===\n")
+            resumen = df.describe().round(2)
+            archivo.write(resumen.to_string())
+            archivo.write("\n\n")
+
+        # Correlaciones importantes entre variables numéricas
+        h1, _, _, h4, _, h5 = tablas.values()
+        archivo.write("=== CORRELACIONES DE PEARSON ===\n")
+        archivo.write(f"H1 (Total unidades vs % empresas grandes): {h1['total_unidades'].corr(h1['pct_empresas_grandes']):.3f}\n")
+        archivo.write(f"H4 (Total noticias vs Sentimiento promedio): {h4['total_noticias'].corr(h4['sentimiento_promedio']):.3f}\n")
+        archivo.write(f"H5 (Total establecimientos vs Centros grandes): {h5['total_establecimientos'].corr(h5['centros_medianos_grandes']):.3f}\n")
+
+    print(f"Estadísticas guardadas en: {ruta_txt}")
