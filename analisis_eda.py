@@ -37,7 +37,7 @@ def complementar_datos(h1, h2, h3, h4, h4_comp, h5):
 
 
 def generar_estadisticas_anexo(tablas, carpeta_anexos):
-    # Resumen estadístico (conteo, media, desv. estándar, min, cuartiles, max) para Anexo 11.3
+    # Exporta resumen estadístico (conteo, media, desv. estándar, min, cuartiles, max) para Anexo 11.3
     ruta_txt = os.path.join(carpeta_anexos, "estadistica_descriptiva_11_3.txt")
     with open(ruta_txt, "w", encoding="utf-8") as archivo:
         for nombre, df in tablas.items():
@@ -46,14 +46,7 @@ def generar_estadisticas_anexo(tablas, carpeta_anexos):
             archivo.write(resumen.to_string())
             archivo.write("\n\n")
 
-        # Correlaciones importantes entre variables numéricas
-        h1, _, _, h4, _, h5 = tablas.values()
-        archivo.write("=== CORRELACIONES DE PEARSON ===\n")
-        archivo.write(f"H1 (Total unidades vs % empresas grandes): {h1['total_unidades'].corr(h1['pct_empresas_grandes']):.3f}\n")
-        archivo.write(f"H4 (Total noticias vs Sentimiento promedio): {h4['total_noticias'].corr(h4['sentimiento_promedio']):.3f}\n")
-        archivo.write(f"H5 (Total establecimientos vs Centros grandes): {h5['total_establecimientos'].corr(h5['centros_medianos_grandes']):.3f}\n")
-
-    print(f"Estadísticas guardadas en resultados_eda.")
+    print(f"Estadísticas guardadas en resultados_eda")
 
 
 def graficas_principales(h1, h2, h3, h4, h5, carpeta_prin):
