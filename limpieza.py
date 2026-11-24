@@ -74,16 +74,27 @@ def limpiar_datos(df):
 
     # 4. Convertir a número (entero o decimal) las columnas que no son claves ni texto
     columnas_texto = ("entidad", "municipio", "estrato_empleados", "tema_noticia", "colonia")
-    for col in df.columnas:
-        if not col.startswitch(claves) and col not in columnas_texto:
+    for col in df.columns:
+        if not col.startswith(claves) and col not in columnas_texto:
             df[col] = pd.to_numeric(df[col])
 
     # 5. Borra filas que estén en blanco y elimina filas repetidas
     df = df.dropna(how="all").drop_duplicates()
 
-    return df        
+    return df
 
 
 if __name__ == "__main__":
-    # Carga todos los archivos de la lista al inicio
+    # Paso 1. Carga todos los archivos de la lista al inicio
     tablas_crudas = cargar_todos(ARCHIVOS_CSV)
+
+    # Paso 2: Crea la carpeta "limpios"
+    os.makedirs("limpios", exist_ok=True)
+
+    # Paso 3: Limpia cada tabla cargada y la guarda en un archivo CSV nuevo
+    for nombre, df in tablas_crudas.items():
+        df_limpio = limpiar_datos(df)
+        nombre_nuevo = f"limpio_{nombre.replace(' ', '_')}"
+        ruta_salida = os.path.join("limpios", nombre_nuevo)
+        df_limpio.to_csv(ruta_salida, index=False, encoding="utf-8-sig")
+        print(f"Guardado: {ruta_salida} ({len(df_limpio)} filas)")
