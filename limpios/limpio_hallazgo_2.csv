@@ -1,0 +1,16 @@
+﻿cve_ent,entidad,cve_mun,municipio,fab_equipo_medico,fab_higiene_personal,total_proveedores_salud_higiene
+14,Jalisco,039,Guadalajara,1536,1632,3168
+11,Guanajuato,020,León,1632,1472,3104
+02,Baja California,004,Tijuana,2624,256,2880
+15,México,033,Ecatepec de Morelos,1024,1824,2848
+21,Puebla,114,Puebla,1152,1536,2688
+15,México,106,Toluca,2304,320,2624
+19,Nuevo León,039,Monterrey,992,1472,2464
+09,Ciudad de México,007,Iztapalapa,1216,960,2176
+02,Baja California,002,Mexicali,1856,192,2048
+01,Aguascalientes,001,Aguascalientes,704,960,1664
+14,Jalisco,120,Zapopan,640,864,1504
+31,Yucatán,050,Mérida,512,896,1408
+15,México,058,Nezahualcóyotl,1088,320,1408
+09,Ciudad de México,005,Gustavo A. Madero,672,608,1280
+16,Michoacán de Ocampo,053,Morelia,736,480,1216
