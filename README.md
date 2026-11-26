@@ -14,11 +14,11 @@ El proyecto utiliza información del Directorio Estadístico Nacional de Unidade
 - **Visualización:** Se realizaron gráficas para presentar los resultados y facilitar su comparación.
 
 ## Herramientas y librerías utilizadas
-* **Base de datos y consultas:** PostgreSQL / DBeaver (`consultas.sql`)
+* **Base de datos y consultas:** PostgreSQL / DBeaver (`consultas.sql`).
 * **Procesamiento y análisis:** Python 3.14.3
-- `pandas`: Limpieza, manipulación de tablas CSV y estadística descriptiva.
-- `matplotlib`: Generación de gráficas y visualizaciones.
-* **Entorno y control de versiones:** Visual Studio Code y GitHub
+    - `pandas`: Limpieza, manipulación de tablas CSV y estadística descriptiva.
+    - `matplotlib`: Generación de gráficas y visualizaciones.
+* **Entorno y control de versiones:** Visual Studio Code y GitHub.
 
 ## Guía de ejecución
 
