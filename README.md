@@ -22,7 +22,7 @@ El proyecto utiliza información del Directorio Estadístico Nacional de Unidade
 
 ## Guía de ejecución
 
-Abre **CMD**, ubícate en la carpeta donde guardas tus proyectos (por ejemplo, `Documents`), clona el repositorio oficial y entra a su directorio:
+Abre **CMD**, ubícate en la carpeta donde guardas tus proyectos (por ejemplo, `Documents`) y clona el repositorio:
 
 ```bash
 cd Documents
@@ -58,7 +58,7 @@ python limpieza.py
 ```
 
 ### 6. Ejecutar el script de análisis y visualizaciones (`analisis_eda.py`)
-Una vez generados los CSV limpios, ejecuta el segundo script para generar el resumen de estadística descriptiva y generar las gráficas del informe:
+Una vez generados los CSV limpios, ejecuta el segundo script para generar el resumen de estadística descriptiva y crear las gráficas del informe:
 
 ```bash
 python analisis_eda.py
