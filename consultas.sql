@@ -1,6 +1,6 @@
 -- ============================================================================
 -- PROYECTO: Estrategia de expansión y selección de ubicación para una nueva sucursal de farmacia
--- ASIGNATURA: Patrones de Comportamiento de Datos
+-- MATERIA: Patrones de Comportamiento de Datos
 -- DESCRIPCIÓN: Consultas SQL en DBeaver
 -- ============================================================================
 
