@@ -1,0 +1,66 @@
+=== ESTADISTICA DESCRIPTIVA: Hallazgo 1 (Municipios) ===
+       total_unidades  empresas_medianas_grandes  pct_empresas_grandes
+count           15.00                       15.0                 15.00
+mean        160157.87                    25907.2                 18.41
+std          95370.04                    13426.1                  7.69
+min          55584.00                    14560.0                  7.69
+25%          93904.00                    17024.0                 14.90
+50%         134368.00                    21184.0                 16.90
+75%         208464.00                    30496.0                 21.60
+max         401824.00                    65728.0                 38.63
+
+=== ESTADISTICA DESCRIPTIVA: Hallazgo 2 (Salud/Higiene) ===
+       fab_equipo_medico  fab_higiene_personal  total_proveedores_salud_higiene
+count              15.00                 15.00                            15.00
+mean             1245.87                919.47                          2165.33
+std               630.27                554.32                           705.63
+min               512.00                192.00                          1216.00
+25%               720.00                400.00                          1456.00
+50%              1088.00                896.00                          2176.00
+75%              1584.00               1472.00                          2768.00
+max              2624.00               1824.00                          3168.00
+
+=== ESTADISTICA DESCRIPTIVA: Hallazgo 3 (Estratos) ===
+       cantidad_establecimientos  porcentaje_nacional  pct_acumulado
+count                       7.00                 7.00           7.00
+mean                  3001673.14                14.29          96.39
+std                   6834482.88                32.53           4.23
+min                    141824.00                 0.67          87.91
+25%                    154608.00                 0.74          95.51
+50%                    162976.00                 0.78          97.86
+75%                    963088.00                 4.58          98.97
+max                  18471520.00                87.91         100.01
+
+=== ESTADISTICA DESCRIPTIVA: Hallazgo 4 (Noticias Mun.) ===
+       total_noticias  sentimiento_promedio  noticias_negativas  pct_negativas
+count            9.00                  9.00                9.00           9.00
+mean           111.11                 -0.01               55.44          49.84
+std             12.73                  0.04                8.13           3.78
+min             98.00                 -0.09               45.00          43.69
+25%            100.00                 -0.02               49.00          49.00
+50%            107.00                  0.00               55.00          50.00
+75%            120.00                  0.02               61.00          50.39
+max            131.00                  0.04               69.00          57.01
+
+=== ESTADISTICA DESCRIPTIVA: Complemento H4 (Temas) ===
+       cantidad_noticias  sentimiento_promedio  notas_negativas  pct_negativas
+count              10.00                 10.00            10.00          10.00
+mean               12.90                 -0.02             6.50          49.41
+std                 3.11                  0.12             2.64          13.86
+min                 9.00                 -0.18             2.00          22.22
+25%                10.25                 -0.12             5.00          45.62
+50%                12.50                 -0.01             6.50          47.06
+75%                16.00                  0.06             7.75          52.89
+max                17.00                  0.16            12.00          70.59
+
+=== ESTADISTICA DESCRIPTIVA: Hallazgo 5 (Colonias GDL) ===
+       total_establecimientos  centros_medianos_grandes  pct_medianos_grandes
+count                   10.00                     10.00                 10.00
+mean                  3859.20                   1081.60                 34.65
+std                   2352.15                    806.13                 19.71
+min                   1056.00                    576.00                  6.38
+25%                   1848.00                    648.00                 20.68
+50%                   4320.00                    784.00                 35.18
+75%                   4768.00                    968.00                 41.72
+max                   9024.00                   3200.00                 66.23
+
