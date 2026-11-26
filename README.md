@@ -22,6 +22,8 @@ El proyecto utiliza información del Directorio Estadístico Nacional de Unidade
 
 ## Guía de ejecución
 
+### 1. Clonar el repositorio
+
 Abre **CMD**, ubícate en la carpeta donde guardas tus proyectos (por ejemplo, `Documents`) y clona el repositorio:
 
 ```bash
